@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/zeyneperarslan/Inventory.Api/Inventory.Api/Inventory.Api.csproj": {}
+    "/Users/zeyneperarslan/RiderProjects/inventoryManagment/Inventory.Api.csproj": {}
   },
   "projects": {
-    "/Users/zeyneperarslan/Inventory.Api/Inventory.Api/Inventory.Api.csproj": {
+    "/Users/zeyneperarslan/RiderProjects/inventoryManagment/Inventory.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/zeyneperarslan/Inventory.Api/Inventory.Api/Inventory.Api.csproj",
+        "projectUniqueName": "/Users/zeyneperarslan/RiderProjects/inventoryManagment/Inventory.Api.csproj",
         "projectName": "Inventory.Api",
-        "projectPath": "/Users/zeyneperarslan/Inventory.Api/Inventory.Api/Inventory.Api.csproj",
+        "projectPath": "/Users/zeyneperarslan/RiderProjects/inventoryManagment/Inventory.Api.csproj",
         "packagesPath": "/Users/zeyneperarslan/.nuget/packages/",
-        "outputPath": "/Users/zeyneperarslan/Inventory.Api/Inventory.Api/obj/",
+        "outputPath": "/Users/zeyneperarslan/RiderProjects/inventoryManagment/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/zeyneperarslan/.nuget/NuGet/NuGet.Config"

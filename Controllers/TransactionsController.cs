@@ -12,21 +12,45 @@ public class TransactionsController : ControllerBase
 
     public record MoveDto(int ShelfId, int MaterialId, int Quantity, int UserId, string? Notes);
 
-    // POST /api/transactions/in
+    /// <summary>Stoğa giriş (increase)</summary>
     [HttpPost("in")]
-    public async Task<IActionResult> StockIn([FromBody] MoveDto dto, CancellationToken ct)
+    [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> StockIn([FromBody] MoveDto dto, CancellationToken ct = default)
     {
-        var (ok, err) = await _svc.StockInAsync(
+        if (dto.Quantity <= 0) return BadRequest(new { error = "Quantity must be > 0" });
+
+        var (ok, err, code) = await _svc.StockInAsync(
             new TransactionService.StockRequest(dto.ShelfId, dto.MaterialId, dto.Quantity, dto.UserId, dto.Notes), ct);
-        return ok ? Ok(new { message = "Stock increased" }) : BadRequest(new { error = err });
+
+        return code switch
+        {
+            TransactionService.ErrorCode.NotFound   => NotFound(new { error = err }),
+            TransactionService.ErrorCode.Validation => BadRequest(new { error = err }),
+            _                                       => ok ? Ok(new { message = "Stock increased" })
+                                                         : BadRequest(new { error = err ?? "Unable to increase stock" })
+        };
     }
 
-    // POST /api/transactions/out
+    /// <summary>Stoktan çıkış (decrease)</summary>
     [HttpPost("out")]
-    public async Task<IActionResult> StockOut([FromBody] MoveDto dto, CancellationToken ct)
+    [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> StockOut([FromBody] MoveDto dto, CancellationToken ct = default)
     {
-        var (ok, err) = await _svc.StockOutAsync(
+        if (dto.Quantity <= 0) return BadRequest(new { error = "Quantity must be > 0" });
+
+        var (ok, err, code) = await _svc.StockOutAsync(
             new TransactionService.StockRequest(dto.ShelfId, dto.MaterialId, dto.Quantity, dto.UserId, dto.Notes), ct);
-        return ok ? Ok(new { message = "Stock decreased" }) : BadRequest(new { error = err });
+
+        return code switch
+        {
+            TransactionService.ErrorCode.NotFound   => NotFound(new { error = err }),
+            TransactionService.ErrorCode.Validation => BadRequest(new { error = err }),
+            _                                       => ok ? Ok(new { message = "Stock decreased" })
+                                                         : BadRequest(new { error = err ?? "Unable to decrease stock" })
+        };
     }
 }

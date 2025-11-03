@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sw6MKY/z6xE=",
+  "dgSpecHash": "XeqecvZdt0c=",
   "success": true,
-  "projectFilePath": "/Users/zeyneperarslan/Inventory.Api/Inventory.Api/Inventory.Api.csproj",
+  "projectFilePath": "/Users/zeyneperarslan/RiderProjects/inventoryManagment/Inventory.Api.csproj",
   "expectedPackageFiles": [
     "/Users/zeyneperarslan/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/zeyneperarslan/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
